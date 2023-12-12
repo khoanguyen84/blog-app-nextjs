@@ -1,10 +1,22 @@
 'use client'
 import useSWR from "swr"
 import dayjs from "dayjs"
+import CreateBlogModel from "@/components/CreateBlogModel"
+import { useState } from "react"
 
 const fetcher = (url) => fetch(url).then((res) => res.json())
 const BlogPage = () => {
-    const { data: blogList, error, isLoading } = useSWR('https://jsonserver-vercel-api.vercel.app/posts?_page=1&_limit=20', fetcher)
+    const [selectPost, setSelectPost] = useState({})
+    const [openCreateModel, setOpenCreateModel] = useState(false)
+    const { data: blogList, error, isLoading } = useSWR(
+        'https://jsonserver-vercel-api.vercel.app/posts?_page=1&_limit=15&_sort=createdAt&_order=desc',
+        fetcher,
+        {
+            revalidateIfStale: false,
+            revalidateOnFocus: false,
+            revalidateOnReconnect: false
+        }
+    )
     if (isLoading) {
         return <p>Loading ...</p>
     }
@@ -12,18 +24,20 @@ const BlogPage = () => {
         <>
             <div className="d-flex align-items-center justify-content-between">
                 <h5>Blog List</h5>
-                <button className="btn btn-sm btn-warning">Add Blog</button>
+                <button className="btn btn-sm btn-warning"
+                    onClick={() => setOpenCreateModel(true)}
+                >Add Blog</button>
             </div>
-            <div>
-                <table className="table table-striped">
-                    <thead>
+            <div className="mt-1">
+                <table className="table table-striped table-hover" role="button">
+                    <thead className="table-success">
                         <tr>
                             <th>
                                 <input type="checkbox" className="form-checkbox" />
                             </th>
                             <th>Title</th>
                             <th>Author</th>
-                            <th>Created Date</th>
+                            <th className="text-end">Created Date</th>
                             <th className="text-end">Action</th>
                         </tr>
                     </thead>
@@ -40,7 +54,7 @@ const BlogPage = () => {
                                     <td>
                                         {blog.author}
                                     </td>
-                                    <td>
+                                    <td className="text-end">
                                         {dayjs(blog.createdAt).format('MMM DD YYYY')}
                                     </td>
                                     <td className="text-end">
@@ -54,6 +68,7 @@ const BlogPage = () => {
                     </tbody>
                 </table>
             </div>
+            <CreateBlogModel openCreateModel={openCreateModel} setOpenCreateModel={setOpenCreateModel}/>
         </>
     )
 }

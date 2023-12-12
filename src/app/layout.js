@@ -3,6 +3,8 @@ import './globals.css'
 import Header from '@/components/Header'
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import Footer from '@/components/Footer'
+import { ToastContainer } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -16,10 +18,11 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <Header />
-        <div className='container py-1'>
+        <div className='container py-1 vh-100'>
           {children}
         </div>
         <Footer/>
+        <ToastContainer/>
       </body>
     </html>
   )
