@@ -54,10 +54,16 @@ const BlogPage = () => {
             <Row >
                 <Col xs={12} md={12}>
                     <Pagination size="sm" >
-                        <Pagination.Item role="button" key={'prev'} active={direction == 'prev'} onClick={handlePreviousPage}>
+                        <Pagination.Item role="button" key={'prev'} active={direction == 'prev'} 
+                            disabled={page <= 1}
+                            onClick={handlePreviousPage}
+                        >
                             Previous
                         </Pagination.Item>
-                        <Pagination.Item role="button" key={'next'} active={direction == 'next'} onClick={handleNextPage}>
+                        <Pagination.Item role="button" key={'next'} active={direction == 'next'} 
+                            disabled={page >= 6}
+                            onClick={handleNextPage}
+                        >
                             Next
                         </Pagination.Item>
                     </Pagination>

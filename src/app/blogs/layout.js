@@ -1,7 +1,9 @@
 import { Container, Row, Col, Stack, Form, ListGroup, ListGroupItem } from 'react-bootstrap'
 import { FaSearch } from 'react-icons/fa'
-import TopBlogs from '@/components/TopBlogs';
+import RecentArticles from '@/components/RecentArticles';
 import Hyperlink from '@/components/Hyperlink';
+import TopBlogs from '@/components/TopBlogs';
+import Category from '@/components/Category';
 
 export const metadata = {
   title: "Blog detail",
@@ -20,40 +22,8 @@ export default function RootLayout({ children }) {
                 <FaSearch size={14} className="text-secondary" style={{ marginLeft: '-22px' }} />
               </Form>
             </div>
-            <div>
-              <h6>Categories</h6>
-              <ListGroup>
-                <ListGroupItem active role="button">Culture</ListGroupItem>
-                <ListGroupItem role="button">Creativity</ListGroupItem>
-                <ListGroupItem role="button">Food</ListGroupItem>
-                <ListGroupItem role="button">Travel</ListGroupItem>
-                <ListGroupItem role="button">Music</ListGroupItem>
-              </ListGroup>
-            </div>
-            <div className="p-3 bg-light-gray rounded">
-              <h6>Top Blogs</h6>
-              <div className="d-flex mb-2">
-                <h2 className="fw-bolder me-2">1</h2>
-                <div className="d-flex flex-column">
-                  <span className="fw-bolder">Exercitation dolore veniam et aliqua.</span>
-                  <span className="text-secondary fst-italic">Dolor ad ea incididunt elit velit nisi deserunt et esse esse sit non duis.</span>
-                </div>
-              </div>
-              <div className="d-flex mb-2">
-                <h2 className="fw-bolder me-2">2</h2>
-                <div className="d-flex flex-column">
-                  <span className="fw-bolder">Exercitation dolore veniam et aliqua.</span>
-                  <span className="text-secondary fst-italic">Dolor ad ea incididunt elit velit nisi deserunt et esse esse sit non duis.</span>
-                </div>
-              </div>
-              <div className="d-flex mb-2">
-                <h2 className="fw-bolder me-2">3</h2>
-                <div className="d-flex flex-column">
-                  <span className="fw-bolder">Exercitation dolore veniam et aliqua.</span>
-                  <span className="text-secondary fst-italic">Dolor ad ea incididunt elit velit nisi deserunt et esse esse sit non duis.</span>
-                </div>
-              </div>
-            </div>
+            <Category />
+            <TopBlogs />
           </Stack>
         </Col>
         <Col xs={7} md={7}>
@@ -61,8 +31,8 @@ export default function RootLayout({ children }) {
         </Col>
         <Col xs={2} md={2}>
           <Stack gap={4}>
-              <TopBlogs/>
-              <Hyperlink/>
+            <RecentArticles />
+            <Hyperlink />
           </Stack>
         </Col>
       </Row>

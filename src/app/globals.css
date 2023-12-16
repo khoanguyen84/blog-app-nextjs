@@ -103,6 +103,15 @@ a {
   -webkit-box-orient: vertical;
 }
 
+.top-blogs>div span:hover{
+  text-decoration: underline;
+  color: #198754 !important
+}
+
+.recent-articles>a:hover{
+  text-decoration: none !important;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
   }
